@@ -54,7 +54,7 @@ for i in range (2,len(table)):
     ).add_to(map_asu)
 
 
-folium.LayerControl.add_to(map_asu)
+#folium.LayerControl.add_to(map_asu)
 
 # Display the map
-map_asu.save("disaster_relief.html")
+map_asu.save("map.html")
