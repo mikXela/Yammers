@@ -1,0 +1,17 @@
+import folium
+
+# Define the coordinates of ASU Tempe Campus
+asu_tempe_coords = [33.4219999, -111.9400044]
+
+# Create a Folium map centered on ASU Tempe Campus
+map_asu = folium.Map(location=asu_tempe_coords, zoom_start=15)
+
+# Add a marker to the map for ASU Tempe Campus
+folium.Marker(
+    location=asu_tempe_coords,
+    popup="ASU Tempe Campus",
+    tooltip="ASU Tempe Campus"
+).add_to(map_asu)
+
+# Display the map
+map_asu
