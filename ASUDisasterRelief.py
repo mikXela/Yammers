@@ -1,4 +1,5 @@
 import folium
+from folium.plugins import Search
 import pandas as pd
 
 
@@ -18,6 +19,19 @@ for i in range (2,len(table)):
     x = table.loc[i, 'X']
     y = table.loc[i,'Y']
     name = table.loc[i,'Location']
+    description = (
+    "<h1>" + name + "</h1><br>" +
+    "Overall: " + str(table.loc[i, "Overall"]) + "<br>" +
+    "Stall Space: " + str(table.loc[i, 'Stall Space']) + "<br>" +
+    str(table.loc[i, 'Stall Space Description']) + "<br>" +
+    "Cleanliness: " + str(table.loc[i, 'Cleanliness']) + "<br>" +
+    str(table.loc[i, 'Cleanliness Description']) + "<br>" +
+    "Privacy: " + str(table.loc[i, 'Privacy']) + "<br>" +
+    str(table.loc[i, 'Privacy Description']) + "<br>" +
+    "Smell: " + str(table.loc[i, 'Smell']) + "<br>" +
+    str(table.loc[i, 'Stench Description'])
+)
+
 
     if table.loc[i, 'Overall'] >= 8:
         icon_image = "easy.png"
@@ -32,22 +46,15 @@ for i in range (2,len(table)):
     icon_image,
     icon_size=(30, 30),
     )
-
     folium.Marker(
         location = [x,y],
         icon=icon,
-        popup=name
+        popup = folium.Popup(description, max_width=500),
+        tooltip=name
     ).add_to(map_asu)
 
-# Add a marker to the map for ASU Tempe Campus
 
-"""folium.Marker(
-    location=asu_tempe_coords,
-    popup="ASU Tempe Campus",
-    tooltip="ASU Tempe Campus"
-).add_to(map_asu)"""
+folium.LayerControl.add_to(map_asu)
 
-#bathroom search
-#
 # Display the map
 map_asu.save("disaster_relief.html")
