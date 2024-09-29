@@ -5,10 +5,18 @@ import pandas as pd
 
 
 # Define the coordinates of ASU Tempe Campus
-asu_tempe_coords = [33.4219999, -111.9400044]
+asu_tempe_coords = [33.418141, -111.933716]
+min_lat, min_lon = 33.424302, -111.944359
+max_lat, max_lon = 33.408326, -111.920842
 
 # Create a Folium map centered on ASU Tempe Campus
-map_asu = folium.Map(location=asu_tempe_coords, zoom_start=15)
+map_asu = folium.Map(max_bounds=True,
+                     location=asu_tempe_coords,
+                     min_lat=min_lat,
+                     min_lon=min_lon,
+                     max_lat=max_lat,
+                     max_lon=max_lon,
+                     zoom_start=18)
 
 #turn csv into PANDAS table and read markers
 table = pd.read_csv("ASU Disaster Relief - Sheet1.csv")
